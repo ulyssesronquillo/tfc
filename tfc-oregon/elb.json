@@ -1,0 +1,17 @@
+{
+   "Comment": "set live to ohio elb",
+   "Changes": [
+      {
+         "Action": "UPSERT",
+         "ResourceRecordSet": {
+            "Name": "live.thefatherscall.org",
+            "Type": "A",
+            "AliasTarget": {
+               "HostedZoneId": "Z3AADJGX6KTTL2",
+               "EvaluateTargetHealth": false,
+               "DNSName": "dualstack.livestream-web-lb-1976013738.us-east-2.elb.amazonaws.com."
+            }
+         }
+      }
+   ]
+}
