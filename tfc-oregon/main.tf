@@ -96,9 +96,9 @@ resource "aws_security_group" "livestream-web-server-sg" {
 
   ingress {
     description = "ping"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
@@ -229,9 +229,9 @@ resource "aws_security_group" "livestream-wowza-server-sg" {
 
   ingress {
     description = "ping"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
@@ -303,9 +303,9 @@ resource "aws_security_group" "livestream-switcher-server-sg" {
 
   ingress {
     description = "ping"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
