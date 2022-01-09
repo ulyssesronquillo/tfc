@@ -1,0 +1,7 @@
+#videoX5LYsrKqwuMT { margin: 10px 0; }
+#audio468oRt2L2Ia2 { margin: 10px 0; } 
+.video-playlist { border: 1px solid #eee; margin: 0 auto; width: 90%; }
+.audio-playlist { border: 1px solid #eee; margin: 0 auto; width: 350px; }
+.video-playlist a { display: block; border-top: 1px solid #eee; padding:5px 10px; text-align: left; }
+.audio-playlist a { display: block; border-top: 1px solid #eee; padding:5px 10px; text-align: left; }
+.playlist-title { margin: 0; padding: 10px; font-size: 100%; display: block; text-align: left; }
