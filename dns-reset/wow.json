@@ -1,0 +1,18 @@
+{
+   "Comment": "set wowza to ohio",
+   "Changes": [
+      {
+         "Action": "UPSERT",
+         "ResourceRecordSet": {
+            "Name": "wowza.thefatherscall.org",
+            "Type": "A",
+            "TTL": 60,
+            "ResourceRecords": [
+               {
+                  "Value": "18.219.145.3"
+               }
+            ]
+         }
+      }
+   ]
+}
