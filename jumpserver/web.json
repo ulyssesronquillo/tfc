@@ -1,0 +1,18 @@
+{
+   "Comment": "set live back to website",
+   "Changes": [
+      {
+         "Action": "UPSERT",
+         "ResourceRecordSet": {
+            "Name": "live.thefatherscall.org",
+            "Type": "A",
+            "TTL": 60,
+            "ResourceRecords": [
+               {
+                  "Value": "3.21.71.187"
+               }
+            ]
+         }
+      }
+   ]
+}

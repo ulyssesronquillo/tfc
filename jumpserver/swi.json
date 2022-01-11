@@ -1,0 +1,18 @@
+{
+   "Comment": "set switcher to ip 18.221.164.61",
+   "Changes": [
+      {
+         "Action": "UPSERT",
+         "ResourceRecordSet": {
+            "Name": "switcher.thefatherscall.org",
+            "Type": "A",
+            "TTL": 300,
+            "ResourceRecords": [
+               {
+                  "Value": "18.221.164.61"
+               }
+            ]
+         }
+      }
+   ]
+}
