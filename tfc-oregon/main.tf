@@ -6,10 +6,20 @@ terraform {
   }
 }
 
+variable "profile" { type = string }
+variable "player-ami" { type = string }
+variable "key-name" { type = string }
+variable "wowza-ami" { type = string }
+variable "switcher-ami" { type = string }
+variable "zone-id" { type = string }
+variable "url1" { type = string }
+variable "url2" { type = string }
+variable "url3" { type = string }
+
 # use tfc profile. set region to oregon.
 
 provider "aws" {
-  profile = "tfc"
+  profile = var.profile
   region  = "us-west-2"
 }
 
@@ -180,10 +190,10 @@ resource "aws_lb_listener" "livestream-web-listener" {
 
 resource "aws_launch_configuration" "livestream-web-launch-config" {
   name                 = "livestream-web-launch-config-1.4"
-  image_id             = "ami-044142955eba675a6"
+  image_id             = var.player-ami
   instance_type        = "t2.micro"
   spot_price           = "0.0035"
-  key_name             = "tfc-oregon"
+  key_name             = var.key-name
   iam_instance_profile = "arn:aws:iam::944550773739:instance-profile/machinerole"
   security_groups      = [aws_security_group.livestream-web-server-sg.id]
   lifecycle {
@@ -283,8 +293,8 @@ resource "aws_security_group" "livestream-wowza-server-sg" {
 # launch wowza server
 
 resource "aws_instance" "wowza" {
-  ami             = "ami-04df41bee5e5c12a2"
-  key_name        = "tfc-oregon"
+  ami             = var.wowza-ami
+  key_name        = var.key-name
   instance_type   = "c5.2xlarge"
   subnet_id       = aws_subnet.livestream-subnet-2a.id
   security_groups = [aws_security_group.livestream-wowza-server-sg.id]
@@ -350,8 +360,8 @@ resource "aws_security_group" "livestream-switcher-server-sg" {
 # launch cloud switcher
 
 resource "aws_instance" "switcher" {
-  ami             = "ami-00353d5edb960c71f"
-  key_name        = "tfc-oregon"
+  ami             = var.switcher-ami
+  key_name        = var.key-name
   instance_type   = "c5.2xlarge"
   subnet_id       = aws_subnet.livestream-subnet-2a.id
   security_groups = [aws_security_group.livestream-switcher-server-sg.id]
@@ -381,8 +391,8 @@ resource "aws_eip" "wowza-eip" {
 # update dns records
 
 resource "aws_route53_record" "wowza" {
-  zone_id         = "Z16AGEC3IMI3R8"
-  name            = "wowza.thefatherscall.org"
+  zone_id         = var.zone-id
+  name            = var.url2
   type            = "A"
   ttl             = "60"
   allow_overwrite = true
@@ -390,8 +400,8 @@ resource "aws_route53_record" "wowza" {
 }
 
 resource "aws_route53_record" "switcher" {
-  zone_id         = "Z16AGEC3IMI3R8"
-  name            = "switcher.thefatherscall.org"
+  zone_id         = var.zone-id
+  name            = var.url2
   type            = "A"
   ttl             = "60"
   allow_overwrite = true
@@ -399,8 +409,8 @@ resource "aws_route53_record" "switcher" {
 }
 
 resource "aws_route53_record" "web" {
-  zone_id         = "Z16AGEC3IMI3R8"
-  name            = "live.thefatherscall.org"
+  zone_id         = var.zone-id
+  name            = var.url1
   type            = "A"
   allow_overwrite = true
   alias {
