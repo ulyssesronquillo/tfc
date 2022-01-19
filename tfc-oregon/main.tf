@@ -401,7 +401,7 @@ resource "aws_route53_record" "wowza" {
 
 resource "aws_route53_record" "switcher" {
   zone_id         = var.zone-id
-  name            = var.url2
+  name            = var.url3
   type            = "A"
   ttl             = "60"
   allow_overwrite = true
